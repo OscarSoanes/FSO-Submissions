@@ -23,17 +23,21 @@ function Statistics(props) {
     props.good !== 0 || props.neutral !== 0 || props.bad !== 0 ? <>
       <h2>Statistics</h2>
       <table>
-        <tr>
-          <th>Stat</th>
-          <th>Calculation</th>
-        </tr>
-        <StatisticLine text={"Good"} calculation={props.good}/>
-        <StatisticLine text={"Neutral"} calculation={props.neutral}/>
-        <StatisticLine text={"Bad"} calculation={props.bad}/>
+        <thead>
+          <tr>
+            <th>Stat</th>
+            <th>Calculation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <StatisticLine text={"Good"} calculation={props.good}/>
+          <StatisticLine text={"Neutral"} calculation={props.neutral}/>
+          <StatisticLine text={"Bad"} calculation={props.bad}/>
 
-        <StatisticLine text={"All"} calculation={allCalculation()}/>
-        <StatisticLine text={"Average"} calculation={averageCalculation()}/>
-        <StatisticLine text={"Positive"} calculation={positiveCalculation()}/>
+          <StatisticLine text={"All"} calculation={allCalculation()}/>
+          <StatisticLine text={"Average"} calculation={averageCalculation()}/>
+          <StatisticLine text={"Positive"} calculation={positiveCalculation()}/>
+        </tbody>
       </table>
     </> :
     <>
