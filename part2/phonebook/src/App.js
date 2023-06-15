@@ -2,8 +2,7 @@ import { useState } from 'react'
 
 const App = () => {
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas' },
-    { id: 0 }
+    { name: 'Arto Hellas', id: 0 },
   ]) 
   const [newName, setNewName] = useState('')
 
