@@ -24,6 +24,10 @@ const App = () => {
     setNewNumber(event.target.value);
   }
 
+  const handleFilterChange = (event) => {
+    setFilter(event.target.value);
+  }
+
   const submitName = (event) => {
     event.preventDefault();
 
@@ -46,6 +50,10 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <form>
+        Filter name by <input value={filter} onChange={handleFilterChange}/>
+      </form>
+
       <form onSubmit={submitName}>
         <div>
           <div>
