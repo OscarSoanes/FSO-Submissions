@@ -22,13 +22,19 @@ function Statistics(props) {
   return (
     props.good !== 0 || props.neutral !== 0 || props.bad !== 0 ? <>
       <h2>Statistics</h2>
-      <StatisticLine text={"Good"} calculation={props.good}/>
-      <StatisticLine text={"Neutral"} calculation={props.neutral}/>
-      <StatisticLine text={"Bad"} calculation={props.bad}/>
+      <table>
+        <tr>
+          <th>Stat</th>
+          <th>Calculation</th>
+        </tr>
+        <StatisticLine text={"Good"} calculation={props.good}/>
+        <StatisticLine text={"Neutral"} calculation={props.neutral}/>
+        <StatisticLine text={"Bad"} calculation={props.bad}/>
 
-      <StatisticLine text={"All"} calculation={allCalculation()}/>
-      <StatisticLine text={"Average"} calculation={averageCalculation()}/>
-      <StatisticLine text={"Positive"} calculation={positiveCalculation()}/>
+        <StatisticLine text={"All"} calculation={allCalculation()}/>
+        <StatisticLine text={"Average"} calculation={averageCalculation()}/>
+        <StatisticLine text={"Positive"} calculation={positiveCalculation()}/>
+      </table>
     </> :
     <>
       <h2>Statistics</h2>
@@ -38,7 +44,12 @@ function Statistics(props) {
 }
 
 function StatisticLine(props) {
-  return <p>{props.text}: {props.calculation}</p>
+  return (
+  <tr>
+    <td>{props.text}</td>
+    <td>{props.calculation}</td>
+  </tr>
+  )
 }
 
 function App() {
