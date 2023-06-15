@@ -7,15 +7,27 @@ function FeedbackButton({onClick, text}) {
 }
 
 function Statistics(props) {
+  const allCalculation = () => {
+    return props.good + props.neutral + props.bad;
+  }
+
+  const averageCalculation = () => {
+    return (props.good - props.bad) / allCalculation()
+  }
+
+  const positiveCalculation = () => {
+    return (props.good / allCalculation()) * 100;
+  }
+
   return (
     props.good !== 0 || props.neutral !== 0 || props.bad !== 0 ? <>
       <h2>Statistics</h2>
       <p>Good: {props.good}</p>
       <p>Neutral: {props.neutral}</p>
       <p>Bad: {props.bad}</p>
-      <p>All: {props.good + props.neutral + props.bad}</p>
-      <p>Average: {(props.good - props.bad) / (props.good + props.neutral + props.bad)}</p>
-      <p>Positive: {(props.good) / (props.good + props.neutral + props.bad) * 100}%</p>
+      <p>All: {allCalculation()}</p>
+      <p>Average: {averageCalculation()}</p>
+      <p>Positive: {positiveCalculation()}%</p>
     </> :
     <>
       <h2>Statistics</h2>
