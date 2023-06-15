@@ -14,8 +14,15 @@ function App() {
 
   const [selected, setSelected] = useState(0)
 
+  const increaseSelected = () => {
+    setSelected(Math.floor(Math.random() * anecdotes.length));
+  }
+
   return (
     <div className="App">
+      <p>{anecdotes[selected]}</p>
+
+      <button onClick={increaseSelected}>Next anecdote</button>
     </div>
   );
 }
