@@ -6,6 +6,20 @@ function FeedbackButton({onClick, text}) {
   )
 }
 
+function Statistics(props) {
+  return (
+    <>
+      <h2>Statistics</h2>
+      <p>Good: {props.good}</p>
+      <p>Neutral: {props.neutral}</p>
+      <p>Bad: {props.bad}</p>
+      <p>All: {props.good + props.neutral + props.bad}</p>
+      <p>Average: {(props.good - props.bad) / (props.good + props.neutral + props.bad)}</p>
+      <p>Positive: {(props.good) / (props.good + props.neutral + props.bad)}%</p>
+    </>
+  )
+}
+
 function App() {
   // states
   const [good, setGood] = useState(0);
@@ -32,13 +46,7 @@ function App() {
       <FeedbackButton onClick={increaseNeutral} text={"Neutral"} />
       <FeedbackButton onClick={increaseBad} text={"Bad"} />
 
-      <h2>Statistics</h2>
-      <p>Good: {good}</p>
-      <p>Neutral: {neutral}</p>
-      <p>Bad: {bad}</p>
-      <p>All: {good + neutral + bad}</p>
-      <p>Average: {(good - bad) / (good + neutral + bad)}</p>
-      <p>Positive: {(good) / (good + neutral + bad)}%</p>
+      <Statistics good={good} neutral={neutral} bad={bad}/>
     </div>
   );
 }
