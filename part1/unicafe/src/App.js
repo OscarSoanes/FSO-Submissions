@@ -16,24 +16,29 @@ function Statistics(props) {
   }
 
   const positiveCalculation = () => {
-    return (props.good / allCalculation()) * 100;
+    return (props.good / allCalculation()) * 100 + "%";
   }
 
   return (
     props.good !== 0 || props.neutral !== 0 || props.bad !== 0 ? <>
       <h2>Statistics</h2>
-      <p>Good: {props.good}</p>
-      <p>Neutral: {props.neutral}</p>
-      <p>Bad: {props.bad}</p>
-      <p>All: {allCalculation()}</p>
-      <p>Average: {averageCalculation()}</p>
-      <p>Positive: {positiveCalculation()}%</p>
+      <StatisticLine text={"Good"} calculation={props.good}/>
+      <StatisticLine text={"Neutral"} calculation={props.neutral}/>
+      <StatisticLine text={"Bad"} calculation={props.bad}/>
+
+      <StatisticLine text={"All"} calculation={allCalculation()}/>
+      <StatisticLine text={"Average"} calculation={averageCalculation()}/>
+      <StatisticLine text={"Positive"} calculation={positiveCalculation()}/>
     </> :
     <>
       <h2>Statistics</h2>
       <p>No feedback given</p>
     </>
   )
+}
+
+function StatisticLine(props) {
+  return <p>{props.text}: {props.calculation}</p>
 }
 
 function App() {
