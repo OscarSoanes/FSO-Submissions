@@ -46,13 +46,16 @@ const App = () => {
 
     const personObject = {
       name: newName,
-      id: persons.length,
       number: newNumber
     };
 
-    setPersons(persons.concat(personObject));
-    setNewName("");
-    setNewNumber("");
+    peopleService
+      .create(personObject)
+      .then(returnedPerson => {
+        setPersons(persons.concat(returnedPerson));
+        setNewName("");
+        setNewNumber("");
+      })
   }
 
   return (
