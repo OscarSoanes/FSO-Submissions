@@ -64,6 +64,7 @@ const App = () => {
         setNewName("");
         setNewNumber("");
         setMessage(`Added ${personObject.name}`);
+        setError(false);
       })
   }
 
@@ -80,6 +81,11 @@ const App = () => {
         setNewNumber("");
 
         setMessage(`Updated ${personObject.name}`);
+        setError(false);
+      })
+      .catch(() => {
+        setMessage(`The person ${personObject.name} was already deleted from the server.`)
+        setError(true);
       })
   }
 
@@ -96,6 +102,7 @@ const App = () => {
       .then(() => {
         setPersons(persons.filter(person => person.id !== parseInt(id)))
         setMessage(`Deleted ${selectedPerson.name}`);
+        setError(false);
       })
   }
 
@@ -103,7 +110,7 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
 
-      <Notification message={message} error={false}/>
+      <Notification message={message} error={error}/>
 
       <Filter filter={filter} onChange={handleFilterChange} />
 
