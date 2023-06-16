@@ -9,7 +9,7 @@ const getAllByFilter = (query) => {
   });
 
   return data.then(countries => {
-    return countries.filter(country => country.name.common.includes(query))
+    return countries.filter(country => country.name.common.toLowerCase().includes(query.toLowerCase()))
   });
 };
 
