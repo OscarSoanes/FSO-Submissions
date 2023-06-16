@@ -41,7 +41,12 @@ const App = () => {
 
     const nameExist = persons.find(person => person.name.toLowerCase() === newName.toLowerCase());
     if (nameExist !== undefined) {
-      return alert(`${newName} is already added to the phonebook.`)
+      if(!window.confirm(`${newName} is already added to the phonebook, replace the old number with a new one?`)) {
+        return;
+      };
+
+      // User wants to be updated.
+      return updateNumber();
     }
 
     const personObject = {
@@ -53,6 +58,20 @@ const App = () => {
       .create(personObject)
       .then(returnedPerson => {
         setPersons(persons.concat(returnedPerson));
+        setNewName("");
+        setNewNumber("");
+      })
+  }
+
+  const updateNumber = () => {
+    const matchedPerson = persons.find(person => person.name === newName);
+    
+    const personObject = {...matchedPerson, number: newNumber};
+
+    peopleService
+      .update(matchedPerson.id, personObject)
+      .then(returnedPerson => {
+        setPersons(persons.map(people => people.id !== matchedPerson.id ? people : returnedPerson))
         setNewName("");
         setNewNumber("");
       })
