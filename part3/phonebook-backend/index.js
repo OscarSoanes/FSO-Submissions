@@ -24,8 +24,38 @@ let persons = [
   }
 ]
 
+app.use(express.json())
+
 app.get("/api/persons", (req, res) => {
   res.json(persons);
+})
+
+const generateId = () => {
+  return Math.floor(Math.random() * 9999999999)
+}
+app.post('/api/persons', (req, res) => {
+  const body = req.body;
+
+  if (!body.name) {
+    return res.status(400).json({
+      error: 'Name Missing'
+    })
+  }
+  if (body.number === undefined) {
+    return res.status(400).json({
+      error: 'Number Missing'
+    })
+  }
+
+  const person = {
+    id: generateId(),
+    name: body.name,
+    number: body.number
+  }
+
+  persons = persons.concat(person);
+
+  res.json(person);
 })
 
 app.get("/info", (req, res) => {
