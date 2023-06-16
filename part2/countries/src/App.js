@@ -50,6 +50,10 @@ function App() {
       {countries.length === 1 && (
         <CountryDetail country={countries[0]}/>
       )}
+
+      {countries.length === 0 && (
+        <p>No countries match, specify another filter.</p>
+      )}
     </div>
   );
 }
