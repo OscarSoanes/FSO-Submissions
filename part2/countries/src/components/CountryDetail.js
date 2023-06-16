@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function CountryDetail({country}) {
-  console.log(country.languages);
+  console.log(country);
   const languages = () => {
     const allLanguages = [];
     for (const language in country.languages) {
@@ -23,6 +23,8 @@ export default function CountryDetail({country}) {
           <li key={language}>{language}</li>
         ))}
       </ul>
+
+      <img src={`${country.flags.png}`} alt={`${country.name.common}'s flag`}/>
     </>
   )
 }
