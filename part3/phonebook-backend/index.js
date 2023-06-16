@@ -46,7 +46,11 @@ app.post('/api/persons', (req, res) => {
       error: 'Number Missing'
     })
   }
-
+  if (persons.findIndex(person => person.name === body.name) !== -1) {
+    return res.status(400).json({
+      error: "Name must be unique"
+    })
+  }
   const person = {
     id: generateId(),
     name: body.name,
