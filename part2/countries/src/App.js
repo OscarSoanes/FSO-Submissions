@@ -43,8 +43,8 @@ function App() {
 
       {countries.length <= 9 && countries.length > 1 && (
         countries.map(country => (
-          <div style={{display: "flex", gap: 8, alignItems: "center"}}>
-            <p key={country.name.common}>{country.name.common}</p>
+          <div style={{display: "flex", gap: 8, alignItems: "center"}} key={country.name.common}>
+            <p>{country.name.common}</p>
             <button onClick={() => setSearch(country.name.common)}>show</button>
           </div>
         ))
