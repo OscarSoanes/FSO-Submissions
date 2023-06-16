@@ -58,6 +58,21 @@ const App = () => {
       })
   }
 
+  const deleteName = (event) => {
+    const id = event.target.getAttribute("data-key");
+    const selectedPerson = persons.find(person => person.id.toString() === id);
+
+    if(!window.confirm(`Are you sure you wish to delete ${selectedPerson.name}?`)) {
+      return;
+    }
+
+    peopleService
+      .deletePerson(id)
+      .then(() => {
+        setPersons(persons.filter(person => person.id !== parseInt(id)))
+      })
+  }
+
   return (
     <div>
       <h2>Phonebook</h2>
@@ -67,7 +82,7 @@ const App = () => {
       <PersonForm onSubmit={submitName} newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumberChange={handleNumberChange}/>
       
       <h3>Numbers</h3>
-      <Persons people={peopleToShow}/>
+      <Persons people={peopleToShow} deleteName={deleteName}/>
     </div>
   )
 }
